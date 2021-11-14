@@ -51,6 +51,7 @@ export default function CourseWiseColleges(props) {
     if(course) {
         const plotData = props.colleges.filter(college => college.courses.includes(course));
         console.log('plotData is ',plotData);
+        
         let colleges = plotData.reduce((clgs,curr) => clgs += curr.name +';' ,[]);
         console.log('colleges are ',colleges);
         let students = await fetch('/students?colleges='+colleges).then(res => res.json()).then( data => data);

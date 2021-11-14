@@ -63,8 +63,20 @@
         box-shadow: 0px 0px 30px #b3b1b1;
     }
 }
+.ost--datatable-search {
+    background-color: #fff !important;
+    border: 1px solid #e3dcdc !important;
+    border-radius: 2px;
+    .ant-input-prefix {
+      left: 8px;
+    }
+  }
 
-.ost-exp-row ~ td:first-child {
-  // background-color: #ddd;
-  // border: 1px solid #ddd;
+  .ant-table-tbody > tr.ant-table-row:hover > td {
+    background: transparent;
+  }
+
+  .ant-table-tbody > tr > td {
+     border-bottom: none;
+     padding: 5px 0px;
 }

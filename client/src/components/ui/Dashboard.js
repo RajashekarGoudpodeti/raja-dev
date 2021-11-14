@@ -7,7 +7,6 @@ import {Card} from 'antd';
 
 export default function Dashboard(props) {
   const [plotData, setPlotData] = React.useState([]);
-  const [students, setStudents] = React.useState([]);
   const [type, setType] = React.useState([]);
 
   const ChartCmp = () => {
@@ -27,7 +26,7 @@ export default function Dashboard(props) {
         <Card title={title}>
             <CollegeList 
               colleges={plotData} 
-              students={students} 
+              history={props.history}
             />
           </Card>
         }
@@ -36,9 +35,9 @@ export default function Dashboard(props) {
   }
 
 
-  const showSelectedPlotData = (plotData, students, type) => {
+  const showSelectedPlotData = (plotData,type) => {
+    debugger;
       setPlotData(plotData);
-      setStudents(students);
       setType(type);
   }
     return(
