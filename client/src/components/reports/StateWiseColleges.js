@@ -41,16 +41,14 @@ export default function StateWiseColleges(props) {
     });
     if(collState) {
       const plotData = props.colleges.filter(college => college.state === collState);
-      console.log('plotData is ',props);
-      let colleges = plotData.reduce((clgs,curr) => clgs += curr.name +';' ,[]);
-      console.log('colleges are ',colleges);
-      let students = await fetch('/students?colleges='+colleges).then(res => res.json()).then( data => data);
-      console.log('students are ',students,plotData);
+      console.log('plotData is ',plotData);
+
+
       let type = {
           name : 'state',
           value : collState
       }
-      props.showSelectedPlotData(plotData,students,type);
+      props.showSelectedPlotData(plotData,type);
      }
   }
 

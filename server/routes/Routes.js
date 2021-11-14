@@ -18,7 +18,26 @@ app.post("/add_college", async (request, response) => {
 
 
 app.get("/colleges", async (request, response) => {
-    const colleges = await collegeModel.find({});
+  let reqBody = {}
+  if(request && request.query) {
+  let id = request.query.id;
+  let name = request.query.name;
+  let courses = request.query.courses && request.query.courses.split(';');
+  let state = request.query.state;
+  if(id) {
+     reqBody._id = id;
+  }
+  if(name) {
+    reqBody.name = name;
+  }
+  if(courses) {
+    reqBody = { courses: { $all: courses } } ;
+  }
+  if(state) {
+    reqBody.state = state;
+  }
+}
+    const colleges = await collegeModel.find(reqBody);
   
     try {
       response.send(colleges);

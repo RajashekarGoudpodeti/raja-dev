@@ -5,34 +5,27 @@ import StudentList from './StudentList';
 import Dashboard from './Dashboard';
 
 
-function Layout() {
+function Layout(props) {
     const[key, setKey] = React.useState('dashboard');
     const[colleges, setColleges] = React.useState([]);
-    const[students, setStudents] = React.useState([]);
 
     React.useEffect(() => {
       const fetchData =  async() => {
         
         const colleges =  await getColleges();
         console.log(colleges);
-        const students =  await getStudents();
-        console.log(students);
+
         let cdata = [];
-        let sdata = [];
+
   
         colleges && colleges.forEach((item, index) => {
           item.key = index;
           cdata.push(item);
         })
   
-        students && students.forEach((item, index) => {
-          item.key = index;
-          sdata.push(item);
-        })
-  
-        console.log('cdata is ',cdata, sdata);
+        console.log('cdata is ',cdata);
         setColleges(cdata);
-        setStudents(sdata);
+
       }
       fetchData();
     },[]);
@@ -40,11 +33,6 @@ function Layout() {
     const getColleges = async () => {
       return await  fetch('/colleges').then(res => res.json()).then(data => data);
     }
-
-    const getStudents = async () => {
-      return await fetch('/students').then(res => res.json()).then(data => data);
-    }
-
 
     const selectItem = (e) => {
       console.log(e);
@@ -79,7 +67,7 @@ function Layout() {
                     <DashboardOutlined style={{marginRight: 10}}/>
                     Home / Dashboard
                   </p>
-                    <Dashboard colleges={colleges}/>
+                    <Dashboard colleges={colleges} {...props}/>
                   </>
                 }
                 {key === 'colleges' && 
@@ -88,7 +76,7 @@ function Layout() {
                         <ShopOutlined style={{marginRight: 10}}/> 
                         Home / Colleges 
                       </p>
-                      <CollegeList colleges={colleges} students={students}/>
+                      <CollegeList colleges={colleges} {...props}/>
                     </>
                 }
               </div>

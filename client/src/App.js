@@ -1,13 +1,20 @@
-import React from "react";
+import React, { Component } from "react";
 import './App.css';
-import Home from "./components/routes/Home";
+import Routes from "./components/routes/RoutesV2";
+import { withRouter } from 'react-router-dom';
+import Header from './components/ui/Header'
 
 
-function App() {
-
+class App extends Component {
+  
+  render() {
   return (
-    <Home/>
+    <>
+     <Header/>
+     <Routes/>  
+  </>
   );
+  }
 }
 
-export default App;
+export default withRouter(App);
